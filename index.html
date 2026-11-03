@@ -3,16 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Damast – Forgejo, folded once more</title>
+<title>Damast – Every commit a layer</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="description" content="Damast is a soft fork of Forgejo. Drop-in replacement, with co-author trailers and repo-bound packages.">
 <style>
-  :root { --bg:#f4f1ec; --fg:#1d1f22; --muted:#5d6168; --line:#d8d2c8; --accent:#7a4b2a; }
-  @media (prefers-color-scheme: dark) { :root { --bg:#141517; --fg:#e8e6e3; --muted:#9a9ea5; --line:#2c2e33; --accent:#d39a6a; } }
+  :root { --bg:#f3f4f6; --fg:#1b2028; --muted:#5b6573; --line:#d9dde3; --accent:#3f6fd8; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0f1217; --fg:#e6e9ee; --muted:#9aa3b0; --line:#2a303a; --accent:#7fa2f0; } }
   * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--fg); font:17px/1.6 ui-serif, Georgia, serif; }
   main { max-width:760px; margin:0 auto; padding:64px 16px 96px; }
   .pattern { height:120px; color:var(--line); }
   h1 { font-size:clamp(44px,9vw,72px); line-height:1; margin:24px 0 8px; letter-spacing:-.02em; }
+  .brand { display:flex; align-items:center; gap:16px; margin:24px 0 8px; }
+  .brand h1 { margin:0; }
+  .brand img { width:clamp(48px,9vw,72px); height:auto; }
+  .slogan { font-size:24px; margin:0 0 12px; }
   .lead { font-size:21px; color:var(--muted); margin:0 0 40px; }
   h2 { font:600 13px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin:56px 0 16px; }
   table { width:100%; border-collapse:collapse; font-family:ui-sans-serif, system-ui, sans-serif; font-size:15px; }
@@ -33,14 +38,15 @@
       <path d="M0 92 C120 76 250 118 380 96 S640 74 760 94"/>
     </g>
   </svg>
-  <h1>Damast</h1>
+  <div class="brand"><img src="favicon.svg" alt=""><h1>Damast</h1></div>
+  <p class="slogan">Every commit a layer.</p>
   <p class="lead">A soft fork of <a href="https://forgejo.org">Forgejo</a>, folded once more. Same data, same config, a few extra features. And a way back, any time.</p>
 
   <h2>What's different</h2>
   <table>
     <tr><th>Feature</th><th>Forgejo</th><th>Damast</th></tr>
     <tr><td>Co-authored-by trailers</td><td>Plain text in the message</td><td>Co-authors shown and credited on commits</td></tr>
-    <tr><td>Package registry</td><td>Owned by user/org, optionally linked to a repo</td><td>Bound to the repository, repo permissions apply</td></tr>
+    <tr><td>Package registry</td><td>Owned by user/org, optionally linked to a repo</td><td>Bound to the repository: repo write publishes, repo read downloads</td></tr>
     <tr><td>Everything else</td><td colspan="2">Identical. Damast follows every Forgejo release.</td></tr>
   </table>
 
