@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Damast – Every commit a layer</title>
-<meta name="description" content="Damast is a self-hosted software forge based on Forgejo. Co-authors on every commit, packages bound to their repository, and a way back to Forgejo at any time.">
+<meta name="description" content="Damast is self-hosted git with the GitHub habits your team already has. An opinionated soft fork of Forgejo: co-authors get credit, packages belong to their repository, and you can go back to Forgejo at any time.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="Damast – Every commit a layer">
-<meta property="og:description" content="A self-hosted software forge based on Forgejo. Drop-in, both ways.">
+<meta property="og:description" content="Self-hosted git with the GitHub habits your team already has. Built on Forgejo, reversible both ways.">
 <meta property="og:image" content="https://damast.dev/img/commit-dark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,6 +95,23 @@
   .term .p { color: #7fa2f0; user-select: none; }
   .term .c { color: #6b7686; }
 
+  .prose { max-width: 720px; margin: 0 auto; }
+  .prose h2 { font-size: clamp(30px, 4vw, 42px); margin: 12px 0 24px; }
+  .prose p { margin: 0 0 18px; }
+  .prose p.muted, .muted { color: var(--muted); }
+  .prose blockquote { margin: 28px 0; padding: 4px 0 4px 22px; border-left: 3px solid var(--straw); font: 500 22px/1.4 var(--display); }
+  .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 48px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 28px; }
+  .card h3 { font: 700 21px var(--display); margin: 10px 0 14px; }
+  .card ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; }
+  .card li { color: var(--muted); font-size: 16px; }
+  .card li b { color: var(--fg); font-weight: 500; }
+  .card.no { border-style: dashed; }
+  .road { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 48px; }
+  .road ul { margin: 0; padding-left: 18px; list-style: disc; display: grid; gap: 8px; color: var(--muted); font-size: 15px; }
+  .road .card { padding: 24px; }
+  .road .eyebrow { display: block; margin-bottom: 14px; }
+  .thanks { background: var(--surface); }
   footer { padding: 40px 0 56px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
   footer .wrap { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
   footer .brand { display: flex; align-items: center; gap: 8px; font: 700 16px var(--display); color: var(--fg); margin-right: auto; }
@@ -103,7 +120,7 @@
   @media (max-width: 820px) {
     .feature, .feature.flip { grid-template-columns: 1fr; gap: 32px; }
     .feature.flip .text { order: 0; }
-    .steps { grid-template-columns: 1fr; }
+    .steps, .cols, .road { grid-template-columns: 1fr; }
     nav a.link.hide-sm { display: none; }
     section { padding: 64px 0; }
     .hero-copy { padding: 48px 0 36px; }
@@ -116,18 +133,20 @@
   <div class="wrap">
     <nav>
       <a class="brand" href="/"><img src="favicon.svg" alt="">Damast</a>
+      <a class="link hide-sm" href="#why">Why</a>
       <a class="link hide-sm" href="#features">Features</a>
-      <a class="link hide-sm" href="#drop-in">Drop-in</a>
+      <a class="link hide-sm" href="#drop-in">Switch</a>
+      <a class="link hide-sm" href="#roadmap">Roadmap</a>
       <a class="link hide-sm" href="#cli">CLI</a>
       <a class="link" href="https://github.com/damast-dev/damast">GitHub</a>
     </nav>
     <div class="hero-copy">
-      <span class="eyebrow">A software forge based on Forgejo</span>
+      <span class="eyebrow">Self-hosted git · Built on Forgejo</span>
       <h1>Every commit <em>a layer.</em></h1>
-      <p class="sub">Self-hosted git with everything Forgejo does, plus credit for every co-author and packages that belong to their repository. Switch in, switch back, keep your data.</p>
+      <p class="sub">Damast is your own forge, with the GitHub habits your team already has. Co-authors get the credit, packages live with their code, and your data never changes shape. Switch in with one image name. Go back the same way.</p>
       <div class="ctas">
         <a class="btn primary" href="#start">Get started</a>
-        <a class="btn ghost" href="https://github.com/damast-dev/damast">View on GitHub</a>
+        <a class="btn ghost" href="#why">Why a fork?</a>
       </div>
     </div>
     <div class="window">
@@ -138,12 +157,25 @@
 </header>
 
 <main>
+  <section id="why">
+    <div class="wrap prose">
+      <span class="eyebrow">Why Damast</span>
+      <h2>Your team learned git on GitHub. Your forge should know that.</h2>
+      <p>Pull requests, <code>Co-authored-by</code> trailers, packages that sit next to the code they came from, workflows that publish with their own token. Nobody calls these features anymore. They are habits.</p>
+      <p>When a team moves to a self-hosted forge, every habit that doesn't carry over becomes a small daily papercut. Someone pairs on a fix and their name disappears. A collaborator can push code but can't publish the package it builds. A workflow needs a personal token for something GitHub does out of the box. None of it is a big deal alone. Together, it's why teams drift back.</p>
+      <p><a href="https://forgejo.org">Forgejo</a> is a great forge with ideas of its own: independence, community governance, federation. It deliberately doesn't try to be GitHub, and that's a good choice for Forgejo.</p>
+      <blockquote>Damast makes the other choice. Where Forgejo and GitHub work differently, Damast leans toward GitHub.</blockquote>
+      <p>Not the look or the logo. The way things work: who gets credit, who can publish, what a token may do. That is an opinion, and plenty of Forgejo users won't share it. Damast doesn't ask you to give up Forgejo. It is Forgejo with a different set of defaults on top, and you can take them off again.</p>
+      <p class="muted"><b>Why the name?</b> <i>Forgejo</i> is Esperanto for <i>forge</i>. <i>Damast</i> is German for Damascus steel: what comes out of a good forge when you fold layers together until each one shows in the blade. Every Damast release is a Forgejo release with a thin, visible layer on top. Every commit a layer.</p>
+    </div>
+  </section>
+
   <section id="features">
     <div class="wrap feature">
       <div class="text">
         <span class="eyebrow">Co-authors</span>
         <h2>Pair programming gets the credit it deserves.</h2>
-        <p>Forgejo shows <code>Co-authored-by</code> trailers as plain text. Damast reads them and puts every co-author next to the author, with avatar and profile link.</p>
+        <p>On Forgejo, <code>Co-authored-by</code> trailers are plain text at the bottom of the message, and pair programming, mob sessions and suggested changes all end up credited to one person. Damast reads the trailers and puts every co-author next to the author, with avatar and profile link, the way GitHub does.</p>
         <ul>
           <li>On commit pages and in every commit list.</li>
           <li>Co-authors without an account still show, with an avatar from their email.</li>
@@ -167,11 +199,12 @@
       <div class="text">
         <span class="eyebrow">Repo-bound packages</span>
         <h2>Packages belong to their repository.</h2>
-        <p>In Forgejo a package belongs to the user or organisation, and only its owners can publish. In Damast it belongs to the repository it was built from, like on GitHub.</p>
+        <p>On Forgejo, a package belongs to the user or organisation, and only owners can publish. A collaborator who can push to a repository can't publish what it builds, and workflows need a personal token. On Damast, a package belongs to the repository it was built from, like on GitHub.</p>
         <ul>
           <li>New packages link to their repository by themselves: from the Actions run, the repo URL in the metadata, or the name.</li>
           <li>Write on the repository lets you publish. Read lets you download, even from a private organisation.</li>
           <li>Actions workflows publish with their built-in token. Pull requests from forks can only read.</li>
+          <li>No access means <code>404</code>, so names of private packages don't leak.</li>
           <li>One switch per package turns it off. Existing packages keep Forgejo's rules.</li>
         </ul>
       </div>
@@ -203,12 +236,12 @@
       <div class="center">
         <span class="eyebrow">Drop-in, both ways</span>
         <h2>Same data. Same config. A way back, any time.</h2>
-        <p>Damast <code>vX.Y.Z-damast.N</code> is built on Forgejo <code>vX.Y.Z</code> and follows every release. It never changes Forgejo's database schema; its extras live in separate <code>damast_*</code> tables.</p>
+        <p>An opinionated fork is only fair if you can leave it. Damast <code>vX.Y.Z-damast.N</code> is built on Forgejo <code>vX.Y.Z</code> and follows every release. It never changes Forgejo's tables or migrations; its extras live in separate <code>damast_*</code> tables that Forgejo ignores. CI rejects any change that breaks this.</p>
       </div>
       <div class="steps">
-        <div class="step"><span class="n">Switch in</span><b>Swap the binary</b><p>Stop Forgejo, start Damast of the same version on the same data and <code>app.ini</code>.</p></div>
+        <div class="step"><span class="n">Switch in</span><b>Swap one image name</b><p>Back up, then replace <code>codeberg.org/forgejo/forgejo:17</code> with <code>ghcr.io/damast-dev/damast:17</code>. Same data, same <code>app.ini</code>.</p></div>
         <div class="step"><span class="n">Stay current</span><b>Follows Forgejo</b><p>Every Forgejo release arrives as a pull request within a day and ships as a Damast release of the same version.</p></div>
-        <div class="step"><span class="n">Switch back</span><b>Start Forgejo again</b><p>Same version, same data. Forgejo ignores the extra tables, and packages keep their repository link.</p></div>
+        <div class="step"><span class="n">Switch back</span><b>Start Forgejo again</b><p>Same Forgejo version or newer, same data. Co-authors become plain text again, and packages fall back to Forgejo's owner rules.</p></div>
       </div>
       <div class="compare">
         <table>
@@ -223,13 +256,77 @@
     </div>
   </section>
 
+  <section id="for-you">
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow">Is it for you?</span>
+        <h2>An honest answer.</h2>
+        <p>Damast is new and opinionated. It's right for some teams and wrong for others.</p>
+      </div>
+      <div class="cols">
+        <div class="card">
+          <span class="eyebrow">Try Damast if</span>
+          <h3>You work the GitHub way</h3>
+          <ul>
+            <li><b>Your team came from GitHub</b>, or still works there too, and wants its own forge without relearning how to collaborate.</li>
+            <li><b>The papercuts are real for you:</b> pairing without credit, collaborators who can't publish, workflows that need personal tokens.</li>
+            <li><b>You already run Forgejo</b> and want to try this without a migration you can't undo.</li>
+          </ul>
+        </div>
+        <div class="card no">
+          <span class="eyebrow">Stay on Forgejo if</span>
+          <h3>Any of these sound like you</h3>
+          <ul>
+            <li><b>You chose Forgejo because it isn't GitHub.</b> Damast is heading the other way, and you won't like where it goes.</li>
+            <li><b>You want a long track record.</b> Forgejo has years of releases, upgrade tests and a security team. Damast started in November 2026, with a small team.</li>
+            <li><b>You need security fixes the hour they're out.</b> Fixes pass through our sync and release first, so they reach you later.</li>
+            <li><b>You don't need any of the changes.</b> The most common reason, and a good one. Forgejo is leaner, and more people look at its code.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow">Roadmap</span>
+        <h2>Where Damast is going.</h2>
+        <p>Toward GitHub's way of working, inside one hard limit: nothing ships that would break the way back to Forgejo.</p>
+      </div>
+      <div class="road">
+        <div class="card">
+          <span class="eyebrow">Shipped</span>
+          <ul>
+            <li>Co-authors on commits and in commit lists</li>
+            <li>Repo-bound packages with Actions token</li>
+            <li>Damast's own name and logo</li>
+            <li>Release candidates, amd64 and arm64 binaries, Docker images</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Next</span>
+          <ul>
+            <li>Co-authors in the contribution graph and on profiles</li>
+            <li>An automated switch-in, switch-back test on every Forgejo sync</li>
+            <li><code>mast</code> commands for Damast features, starting with packages</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Your idea</span>
+          <p class="muted" style="margin:0;font-size:15px">What do you miss from GitHub? <a href="https://github.com/damast-dev/damast/issues/new">Open an issue</a> and tell us what your team trips over.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="cli">
     <div class="wrap feature">
       <div class="text">
         <span class="eyebrow">CLI</span>
-        <h2>mast, the command-line companion.</h2>
-        <p><a href="https://github.com/damast-dev/mast">mast</a> is a soft fork of <a href="https://codeberg.org/forgejo-contrib/forgejo-cli">forgejo-cli</a> (<code>fj</code>) and follows its releases the same way. Every <code>fj</code> command works, and it shares <code>fj</code>'s logins, so you can use both side by side.</p>
-        <p>Damast-specific commands are next on the list.</p>
+        <h2>What <code>gh</code> is to GitHub.</h2>
+        <p>On GitHub, half the workflow happens in the terminal. <a href="https://github.com/damast-dev/mast">mast</a> brings that to your own forge. It's a soft fork of <a href="https://codeberg.org/forgejo-contrib/forgejo-cli">forgejo-cli</a> (<code>fj</code>) and follows its releases the way Damast follows Forgejo.</p>
+        <p>Today mast is <code>fj</code> with a new name, on purpose: every <code>fj</code> command works, and both share their logins, so you can use either. Commands for Damast's features come next.</p>
       </div>
       <pre class="term"><span class="c"># install from source</span>
 <span class="p">$ </span>cargo install --git https://github.com/damast-dev/mast
@@ -244,12 +341,23 @@ mast v0.7.0
     <div class="wrap">
       <div class="center">
         <span class="eyebrow">Get started</span>
-        <h2>Build it, run it.</h2>
-        <p>Prebuilt releases start with <code>v17.0.1-damast.1</code>. Until then, build from source like Forgejo. The <a href="https://forgejo.org/docs/latest/admin/">Forgejo admin docs</a> apply to Damast unchanged.</p>
+        <h2>One line in your compose file.</h2>
+        <p>Docker tags follow Forgejo's, so switching means changing the registry. Back up first, as you would for any upgrade. Binaries for amd64 and arm64 are on the <a href="https://github.com/damast-dev/damast/releases">releases page</a>, and the <a href="https://forgejo.org/docs/latest/admin/">Forgejo admin docs</a> apply to Damast unchanged.</p>
       </div>
-      <pre class="term" style="max-width:720px;margin:40px auto 0"><span class="p">$ </span>git clone https://github.com/damast-dev/damast && cd damast
-<span class="p">$ </span>TAGS="bindata sqlite sqlite_unlock_notify" make build
-<span class="p">$ </span>./gitea web   <span class="c"># same binary interface as Forgejo</span></pre>
+      <pre class="term" style="max-width:720px;margin:40px auto 0"><span class="c"># docker-compose.yml</span>
+services:
+  server:
+<span class="c">-   image: codeberg.org/forgejo/forgejo:17</span>
+<span class="p">+</span>   image: ghcr.io/damast-dev/damast:17
+    volumes:
+      - ./forgejo:/data   <span class="c"># your existing data, unchanged</span></pre>
+    </div>
+  </section>
+  <section class="thanks">
+    <div class="wrap center">
+      <span class="eyebrow">Built on Forgejo</span>
+      <h2>Thanks, Forgejo.</h2>
+      <p>Damast exists because Forgejo exists. The forge, the Actions runner, the package registry, the security work and every release we build on come from the Forgejo contributors, and from Gitea before them. If Damast is useful to you, support <a href="https://forgejo.org">Forgejo</a> and <a href="https://codeberg.org">Codeberg e.V.</a> too. Damast is not affiliated with or endorsed by the Forgejo project.</p>
     </div>
   </section>
 </main>
